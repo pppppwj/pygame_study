@@ -21,7 +21,7 @@ screen_height = m*(grid_height+grid_margin)
 
 #moving speed
 x_change = 0
-y_change = 0
+y_change = (grid_margin+grid_height)
 
 class unit(pygame.sprite.Sprite):
     #def init
@@ -38,8 +38,8 @@ class unit(pygame.sprite.Sprite):
 
 
     def reset_pos(self):
-        self.rect.x = random.randrange(0, n)
-        self.rect.y = random.randrange(0, m)
+        self.rect.x = random.randrange(0, n)*(grid_margin+grid_width)
+        self.rect.y = random.randrange(0, m)*(grid_margin+grid_height)
 
     def update(self):
         #self.rect.x += x_change
@@ -63,20 +63,21 @@ snake=[]
 
 x = random.randrange(0, n)
 y = random.randrange(0, m)
-head = unit(y*(grid_margin+grid_width),x*(grid_height+grid_width))
+head = unit(x*(grid_margin+grid_width),y*(grid_height+grid_margin))
 snake.append(head)
 snake_sprites_list.add(head)
 
 
 x_target = random.randrange(0, n)
 y_target = random.randrange(0, m)
-target = unit(y_target*(grid_margin+grid_width),x_target*(grid_height+grid_width))
+
+target = unit(x_target*(grid_margin+grid_width),y_target*(grid_height+grid_margin))
 target_list.add(target)
 
 
 for i in range(4):
     y-=1
-    body = unit(x*(grid_margin+grid_width),y*(grid_height+grid_width))
+    body = unit(x*(grid_margin+grid_width),y*(grid_height+grid_margin))
     snake.append(body)
     snake_sprites_list.add(body)
 
@@ -128,9 +129,4 @@ while not done:
     clock.tick(10)
 
 pygame.quit()
-
-
-
-
-
 
