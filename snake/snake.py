@@ -37,22 +37,6 @@ class unit(pygame.sprite.Sprite):
         self.rect.y = y
 
 
-    # def update(self,direction):
-    #     if(direction=="left"):
-    #         self.x_change = -(grid_width+grid_margin)
-    #         self.y_change = 0
-    #     elif(direction=="right"):
-    #         self.x_change = (grid_width + grid_margin)
-    #         self.y_change = 0
-    #     elif(direction=="up"):
-    #         self.y_change = (grid_height + grid_margin)
-    #         self.x_change = 0
-    #     elif(direction=="down"):
-    #         self.y_change = -(grid_height + grid_margin)
-    #         self.x_change = 0
-    #     else:
-    #         pass
-
     def reset_pos(self):
         self.rect.x = random.randrange(0, n)
         self.rect.y = random.randrange(0, m)
@@ -79,15 +63,17 @@ snake=[]
 
 x = random.randrange(0, n)
 y = random.randrange(0, m)
-head = unit(x*(grid_margin+grid_width),y*(grid_height+grid_width))
+head = unit(y*(grid_margin+grid_width),x*(grid_height+grid_width))
 snake.append(head)
 snake_sprites_list.add(head)
 
 
 x_target = random.randrange(0, n)
 y_target = random.randrange(0, m)
-target = unit(x_target*(grid_margin+grid_width),y_target*(grid_height+grid_width))
+target = unit(y_target*(grid_margin+grid_width),x_target*(grid_height+grid_width))
 target_list.add(target)
+
+
 for i in range(4):
     y-=1
     body = unit(x*(grid_margin+grid_width),y*(grid_height+grid_width))
@@ -134,6 +120,7 @@ while not done:
 
     snake_sprites_list.update()
     snake_sprites_list.draw(screen)
+    #target.update()
     target_list.draw(screen)
     pygame.display.flip()
 
