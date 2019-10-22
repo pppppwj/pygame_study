@@ -13,6 +13,8 @@ class Player(pygame.sprite.Sprite):
 
     #direction
     direction = "R"
+    # List of sprites we can bump against
+    level = None
 
     def __init__(self):
         super().__init__()
@@ -96,8 +98,8 @@ class Player(pygame.sprite.Sprite):
         #move left\right
         self.rect.x += self.change_x
         self.rect.y += self.change_y
-        #pos = self.rect.x + self.level.world_shift
-        pos = self.rect.x
+        pos = self.rect.x + self.level.world_shift
+        #pos = self.rect.x
 
         if self.direction == "R":
             frame = (pos // 30) % len(self.walking_frames_r)
