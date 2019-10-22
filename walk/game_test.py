@@ -24,16 +24,23 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
                 player.go_left()
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
                 player.go_right()
+            if event.key == pygame.K_w or event.key == pygame.K_SPACE:
+                player.jump()
 
 
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT and player.change_x < 0:
+            # if event.key == pygame.K_LEFT and player.change_x < 0 or event.key == pygame.K_a and player.change_x < 0:
+            #     player.stop()
+            # if event.key == pygame.K_RIGHT and player.change_x > 0 or event.key == pygame.K_d and player.change_x > 0:
+            #     player.stop()
+
+            if event.key == pygame.K_LEFT and player.direction == "L" or event.key == pygame.K_a and player.direction == "L":
                 player.stop()
-            if event.key == pygame.K_RIGHT and player.change_x > 0:
+            if event.key == pygame.K_RIGHT and player.direction == "R" or event.key == pygame.K_d and player.direction == "R":
                 player.stop()
 
     screen.fill(constants.GREEN)

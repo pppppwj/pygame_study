@@ -1,4 +1,5 @@
 import pygame
+import constants
 from spritesheet import SpriteSheet
 
 class Player(pygame.sprite.Sprite):
@@ -89,8 +90,12 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
 
+        #gravity
+        self.calc_grav()
+
         #move left\right
         self.rect.x += self.change_x
+        self.rect.y += self.change_y
         #pos = self.rect.x + self.level.world_shift
         pos = self.rect.x
 
@@ -100,6 +105,18 @@ class Player(pygame.sprite.Sprite):
         else:
             frame = (pos // 30) % len(self.walking_frames_l)
             self.image = self.walking_frames_l[frame]
+
+    def calc_grav(self):
+        """ Calculate effect of gravity. """
+        if self.change_y == 0:
+            self.change_y = 1
+        else:
+            self.change_y += .35
+
+        # See if we are on the ground.
+        if self.rect.y >= constants.SCREEN_HEIGHT - self.rect.height and self.change_y >= 0:
+            self.change_y = 0
+            self.rect.y = constants.SCREEN_HEIGHT - self.rect.height
 
 
     def go_left(self):
@@ -111,6 +128,10 @@ class Player(pygame.sprite.Sprite):
         """ Called when the user hits the right arrow. """
         self.change_x = 6
         self.direction = "R"
+
+    def jump(self):
+        if self.change_y == 0:
+            self.change_y = -10
 
     def stop(self):
         """ Called when the user lets off the keyboard. """
