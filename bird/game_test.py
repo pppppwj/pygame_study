@@ -48,6 +48,13 @@ while not done:
         if not gameover and event.type == pygame.KEYDOWN:
             if event.key == pygame.K_w or event.key == pygame.K_SPACE:
                 bird.jump()
+        if gameover and event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                gameover = False
+                current_level.platform_list.empty()
+                current_level.add_pipe()
+                current_level.score_list.empty()
+                current_level.score = 0
 
     # Update items in the level
     if not gameover:

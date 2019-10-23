@@ -17,7 +17,7 @@ class Level():
         self.player = player
         self.platform_list = pygame.sprite.Group()
         self.score_list = pygame.sprite.Group()
-        self.score_list.add(score(0,0))
+        #self.score_list.add(score(0,0))
         l = random.randrange(200, 300)
         pipe_top = pipe(150,l,"up")
         pipe_down = pipe(150, 400-l, "down")
