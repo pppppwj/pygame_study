@@ -1,0 +1,8 @@
+#screen size
+SCREEN_WIDTH = 288
+SCREEN_HEIGHT = 512
+
+#color
+BLACK = (0,0,0)
+WHITE = (255,255,255)
+GREEN = (0,255,0)
